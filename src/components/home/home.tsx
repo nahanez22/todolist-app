@@ -5,7 +5,7 @@ import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
 
-interface Task {
+export interface Task {
   title: string;
   isComplete: boolean;
 }
@@ -27,7 +27,7 @@ const Home = () => {
       <Header />
       <div className="mt-12 md:flex gap-4">
         <AddTasks addNewTask={addNewTask} />
-        <TaskList />
+        <TaskList tasks={tasks} />
       </div>
     </main>
   );
