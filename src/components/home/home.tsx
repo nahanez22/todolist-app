@@ -4,6 +4,7 @@ import { useState, Dispatch, SetStateAction } from "react";
 import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
+import { generarId } from "../helpers/generate-id";
 
 export interface Tasks {
   title: string;
@@ -13,12 +14,6 @@ export interface Tasks {
 
 const Home = () => {
   const [tasks, setTask] = useState<Tasks[]>([]);
-
-  const generarId = () => {
-    const random = Math.random().toString(36).substring(2);
-    const fecha = Date.now().toString(36);
-    return random + fecha;
-  };
 
   const addNewTask = (name: string) => {
     const newTask: Tasks = {
