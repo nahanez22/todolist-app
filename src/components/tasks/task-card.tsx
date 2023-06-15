@@ -2,7 +2,7 @@ import React from "react";
 import { Tasks } from "../home/home";
 
 interface TaskProps {
-  task: Tasks[];
+  task: Tasks;
 }
 
 function Task({ task }: TaskProps) {
