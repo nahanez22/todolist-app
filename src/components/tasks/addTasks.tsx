@@ -44,7 +44,7 @@ function AddTasks({ addNewTask }: AddTasksProps) {
 
         <input
           type="submit"
-          className=" bg-green-400 hover:bg-green-700 w-full p-3 text-white font-bold rounded-lg cursor-pointer transition-all"
+          className=" bg-green-400 hover:bg-green-700 w-full p-3 text-white font-bold rounded-lg cursor-pointer transition-all mt-5"
           value="Agregar tarea"
         />
       </form>
