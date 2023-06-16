@@ -4,12 +4,11 @@ import { useState, Dispatch, SetStateAction } from "react";
 import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
-import { generarId } from "../helpers/generate-id";
 
 export interface Tasks {
   title: string;
   isComplete: boolean;
-  id: string;
+  readonly id: string;
 }
 
 const Home = () => {
@@ -19,7 +18,7 @@ const Home = () => {
     const newTask: Tasks = {
       title: name,
       isComplete: false,
-      id: generarId(),
+      id: crypto.randomUUID(),
     };
 
     setTask((oldTasks) => [newTask, ...oldTasks]);
