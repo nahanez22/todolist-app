@@ -4,6 +4,7 @@ import { useState, Dispatch, SetStateAction } from "react";
 import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
+import TaskCard from "../tasks/task-card";
 
 export interface Tasks {
   title: string;
@@ -12,7 +13,8 @@ export interface Tasks {
 }
 
 const Home = () => {
-  const [tasks, setTask] = useState<Tasks[]>([]);
+  const [tasks, setTasks] = useState<Tasks[]>([]);
+  const [taskCard, setTaskCard] = useState<Tasks | void>();
 
   const addNewTask = (name: string) => {
     const newTask: Tasks = {
@@ -21,15 +23,19 @@ const Home = () => {
       id: crypto.randomUUID(),
     };
 
-    setTask((oldTasks) => [newTask, ...oldTasks]);
+    setTasks((oldTasks) => [newTask, ...oldTasks]);
+  };
+
+  const handleTaskCard = (taskCard: Tasks) => {
+    setTaskCard(taskCard);
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">
       <Header />
       <div className="mt-12 md:flex gap-4">
-        <AddTasks addNewTask={addNewTask} />
-        <TaskList tasks={tasks} />
+        <AddTasks addNewTask={addNewTask} taskCard={handleTaskCard} />
+        <TaskList tasks={tasks} setTaskCard={setTaskCard} />
       </div>
     </main>
   );

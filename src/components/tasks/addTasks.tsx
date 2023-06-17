@@ -1,10 +1,12 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { Tasks } from "../home/home";
 
 interface AddTasksProps {
   addNewTask: (name: string) => void;
+  taskCard: (task: Tasks) => void;
 }
 
-function AddTasks({ addNewTask }: AddTasksProps) {
+function AddTasks({ addNewTask, taskCard }: AddTasksProps) {
   const [title, setTitle] = useState<string>("");
 
   const handleTituloChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +19,7 @@ function AddTasks({ addNewTask }: AddTasksProps) {
 
     setTitle("");
   };
-
+  console.log({ taskCard });
   return (
     <main>
       <p className="text-lg mt-4 text-center mb-8">Añade tareas</p>

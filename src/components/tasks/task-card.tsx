@@ -1,13 +1,15 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { Tasks } from "../home/home";
 
 interface TaskProps {
   task: Tasks;
+  setTaskCard: (task: Tasks) => void;
 }
 
-function Task({ task }: TaskProps) {
-  console.log(task);
-
+function TaskCard({ task, setTaskCard }: TaskProps) {
+  const handleOnClickEdit: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    setTaskCard(task);
+  };
   return (
     <div className="m-3 bg-white shadow-md px-5 py-10 rounded-xl">
       <p className="font-bold mb-3 text-gray-700 uppercase ">
@@ -17,6 +19,7 @@ function Task({ task }: TaskProps) {
         <button
           type="button"
           className="py-2 px-10 bg-purple-500 hover:bg-purple-700 text-white font-bold uppercase rounded-lg "
+          onClick={handleOnClickEdit}
         >
           Editar
         </button>
@@ -31,4 +34,4 @@ function Task({ task }: TaskProps) {
   );
 }
 
-export default Task;
+export default TaskCard;
