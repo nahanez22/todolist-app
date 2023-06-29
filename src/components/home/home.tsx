@@ -14,7 +14,7 @@ export interface Tasks {
 
 const Home = () => {
   const [tasks, setTasks] = useState<Tasks[]>([]);
-  const [taskCard, setTaskCard] = useState<Tasks | void>();
+  const [taskCard, setTaskCard] = useState<Tasks>();
 
   const addNewTask = (name: string) => {
     const newTask: Tasks = {
@@ -26,15 +26,11 @@ const Home = () => {
     setTasks((oldTasks) => [newTask, ...oldTasks]);
   };
 
-  const handleTaskCard = (taskCard: Tasks) => {
-    setTaskCard(taskCard);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">
       <Header />
       <div className="mt-12 md:flex gap-4">
-        <AddTasks addNewTask={addNewTask} taskCard={handleTaskCard} />
+        <AddTasks addNewTask={addNewTask} taskCard={taskCard} />
         <TaskList tasks={tasks} setTaskCard={setTaskCard} />
       </div>
     </main>

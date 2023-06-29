@@ -1,9 +1,10 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { Tasks } from "../home/home";
+import TaskCard from "./task-card";
 
 interface AddTasksProps {
   addNewTask: (name: string) => void;
-  taskCard: (task: Tasks) => void;
+  taskCard: Tasks | undefined;
 }
 
 function AddTasks({ addNewTask, taskCard }: AddTasksProps) {
@@ -19,10 +20,18 @@ function AddTasks({ addNewTask, taskCard }: AddTasksProps) {
 
     setTitle("");
   };
-  console.log({ taskCard });
+
+  useEffect(() => {
+    if (taskCard) {
+      setTitle(taskCard?.title);
+    }
+  }, [taskCard]);
+
   return (
     <main>
-      <p className="text-lg mt-4 text-center mb-8">Añade tareas</p>
+      <p className="text-lg mt-4 text-center mb-8">
+        {taskCard ? "Editar tarea" : "Añade tareas"}
+      </p>
       <form
         className="bg-white shadow-md rounded-lg py-10 px-5 "
         onSubmit={handleSubmit}
@@ -47,7 +56,7 @@ function AddTasks({ addNewTask, taskCard }: AddTasksProps) {
         <input
           type="submit"
           className=" bg-green-400 hover:bg-green-700 w-full p-3 text-white font-bold rounded-lg cursor-pointer transition-all mt-5"
-          value="Agregar tarea"
+          value={taskCard ? "Editar tarea" : "Agregar tarea"}
         />
       </form>
     </main>
