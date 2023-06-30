@@ -40,12 +40,17 @@ const Home = () => {
     setTasks(newTasks);
   };
 
+  const deleteTask = (id: string) => {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">
       <Header />
       <div className="mt-12 md:flex gap-4">
         <AddTasks addNewTask={addNewTask} />
-        <TaskList tasks={tasks} editTask={editTask} />
+        <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
       </div>
     </main>
   );

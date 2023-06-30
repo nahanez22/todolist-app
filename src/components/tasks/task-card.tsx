@@ -4,9 +4,10 @@ import { Tasks } from "../home/home";
 interface TaskProps {
   task: Tasks;
   editTask: (id: string, title: string) => void;
+  deleteTask: (id: string, title: string) => void;
 }
 
-function TaskCard({ task, editTask }: TaskProps) {
+function TaskCard({ task, editTask, deleteTask }: TaskProps) {
   const [editedTitle, setEditedTitle] = useState<string>(task.title);
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
@@ -17,6 +18,10 @@ function TaskCard({ task, editTask }: TaskProps) {
   function handleOnClickSave() {
     editTask(task.id, editedTitle);
     setIsEdit(false);
+  }
+
+  function handleOnClickDelete() {
+    deleteTask(task.id, task.title);
   }
 
   return (
@@ -68,6 +73,7 @@ function TaskCard({ task, editTask }: TaskProps) {
             <button
               type="button"
               className="py-2 px-10 bg-red-500 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
+              onClick={handleOnClickDelete}
             >
               Eliminar
             </button>
