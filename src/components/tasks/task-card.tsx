@@ -4,7 +4,7 @@ import { Tasks } from "../home/home";
 interface TaskProps {
   task: Tasks;
   editTask: (id: string, title: string) => void;
-  deleteTask: (id: string, title: string) => void;
+  deleteTask: (id: string) => void;
 }
 
 function TaskCard({ task, editTask, deleteTask }: TaskProps) {
@@ -21,7 +21,7 @@ function TaskCard({ task, editTask, deleteTask }: TaskProps) {
   }
 
   function handleOnClickDelete() {
-    deleteTask(task.id, task.title);
+    deleteTask(task.id);
   }
 
   return (

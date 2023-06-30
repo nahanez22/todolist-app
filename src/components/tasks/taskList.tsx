@@ -5,7 +5,7 @@ import TaskCard from "./task-card";
 interface TasksListProps {
   tasks: Tasks[];
   editTask: (id: string, title: string) => void;
-  deleteTask: (id: string, title: string) => void;
+  deleteTask: (id: string) => void;
 }
 
 function TaskList({ tasks, editTask, deleteTask }: TasksListProps) {
