@@ -14,7 +14,6 @@ export interface Tasks {
 
 const Home = () => {
   const [tasks, setTasks] = useState<Tasks[]>([]);
-  const [taskCard, setTaskCard] = useState<Tasks>();
 
   const addNewTask = (name: string) => {
     const newTask: Tasks = {
@@ -26,12 +25,27 @@ const Home = () => {
     setTasks((oldTasks) => [newTask, ...oldTasks]);
   };
 
+  const editTask = (id: string, title: string) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          title: title,
+        };
+      } else {
+        return task;
+      }
+    });
+    console.log(id, title);
+    setTasks(newTasks);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">
       <Header />
       <div className="mt-12 md:flex gap-4">
-        <AddTasks addNewTask={addNewTask} taskCard={taskCard} />
-        <TaskList tasks={tasks} setTaskCard={setTaskCard} />
+        <AddTasks addNewTask={addNewTask} />
+        <TaskList tasks={tasks} editTask={editTask} />
       </div>
     </main>
   );
