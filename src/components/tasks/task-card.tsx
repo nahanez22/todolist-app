@@ -24,6 +24,10 @@ function TaskCard({ task, editTask, deleteTask }: TaskProps) {
     deleteTask(task.id);
   }
 
+  function handleOnClickCancel() {
+    setIsEdit(false);
+  }
+
   return (
     <div className="m-3 bg-white shadow-md px-5 py-10 rounded-xl">
       <h1 className="font-bold mb-3 text-gray-700 uppercase text-center">
@@ -51,6 +55,7 @@ function TaskCard({ task, editTask, deleteTask }: TaskProps) {
             <button
               type="button"
               className="py-2 px-10 bg-red-500 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
+              onClick={handleOnClickCancel}
             >
               Cancelar
             </button>
