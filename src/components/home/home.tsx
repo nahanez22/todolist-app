@@ -46,7 +46,7 @@ const Home = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center  p-24">
+    <main className="flex min-h-screen flex-col items-center  ">
       <Header />
       <div className="mt-12 md:flex gap-4">
         <AddTasks addNewTask={addNewTask} />
