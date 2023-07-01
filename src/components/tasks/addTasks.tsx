@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { Tasks } from "../home/home";
 import TaskCard from "./task-card";
+import { toast } from "react-toastify";
 
 interface AddTasksProps {
   addNewTask: (name: string) => void;
@@ -15,6 +16,18 @@ function AddTasks({ addNewTask }: AddTasksProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (title === "") {
+      return toast.error("Debe llenar el formulario", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
     addNewTask(title);
 
     setTitle("");
@@ -22,10 +35,7 @@ function AddTasks({ addNewTask }: AddTasksProps) {
 
   return (
     <main>
-      <p className="text-lg mt-4 text-center mb-8 font-bold">
-        {/* {taskCard ? "Editar tarea" : "Añade tareas"} */}
-        Añade tarea
-      </p>
+      <p className="text-lg mt-4 text-center mb-8 font-bold">Añade tarea</p>
       <form
         className="bg-white shadow-md rounded-lg py-10 px-5 "
         onSubmit={handleSubmit}
