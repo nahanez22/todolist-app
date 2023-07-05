@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
@@ -14,6 +14,19 @@ export interface Tasks {
 
 const Home = () => {
   const [tasks, setTasks] = useState<Tasks[]>([]);
+
+  useEffect(() => {
+    const getLocalStorage = () => {
+      const taskLocalStorage = JSON.parse(localStorage.getItem("data") ?? "[]");
+      setTasks(taskLocalStorage);
+    };
+
+    getLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addNewTask = (name: string) => {
     const newTask: Tasks = {
@@ -36,7 +49,7 @@ const Home = () => {
         return task;
       }
     });
-    console.log(id, title);
+
     setTasks(newTasks);
   };
 
