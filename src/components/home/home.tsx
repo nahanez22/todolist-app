@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
-import TaskCard from "../tasks/task-card";
+import { useLocalStorage } from "../hooks/LocalStorage";
 
 export interface Tasks {
   title: string;
@@ -13,20 +12,7 @@ export interface Tasks {
 }
 
 const Home = () => {
-  const [tasks, setTasks] = useState<Tasks[]>([]);
-
-  useEffect(() => {
-    const getLocalStorage = () => {
-      const taskLocalStorage = JSON.parse(localStorage.getItem("data") ?? "[]");
-      setTasks(taskLocalStorage);
-    };
-
-    getLocalStorage();
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(tasks));
-  }, [tasks]);
+  const [tasks, setTasks] = useLocalStorage<Tasks[]>("tasks", []);
 
   const addNewTask = (name: string) => {
     const newTask: Tasks = {
