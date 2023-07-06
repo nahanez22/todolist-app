@@ -34,24 +34,24 @@ function AddTasks({ addNewTask }: AddTasksProps) {
   };
 
   return (
-    <main>
-      <p className="text-lg mt-4 text-center mb-8 font-bold">Añade tarea</p>
+    <main className="mt-10 w-96  ">
+      {/*  <p className="text-lg mt-4 text-center mb-8 font-bold">Añade tarea</p> */}
       <form
-        className="bg-white shadow-md rounded-lg py-10 px-5 "
+        className="bg-white shadow-md rounded-lg py-10 px-5  h-44"
         onSubmit={handleSubmit}
       >
         <div>
-          <label
+          {/*  <label
             htmlFor="titulo"
             className="block text-gray-700 uppercase font-bold"
           >
             Titulo
-          </label>
+          </label> */}
           <input
             id="titulo"
             type="text"
-            placeholder="Titulo de la tarea"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            placeholder="Añade la tarea"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md text-center"
             value={title}
             onChange={handleTituloChange}
           />
@@ -59,8 +59,8 @@ function AddTasks({ addNewTask }: AddTasksProps) {
 
         <input
           type="submit"
-          className=" bg-green-400 hover:bg-green-700 w-full p-3 text-white font-bold rounded-lg cursor-pointer transition-all mt-5"
-          value="Añade tarea" /* {taskCard ? "Editar tarea" : "Agregar tarea"} */
+          className=" bg-purple-400 hover:bg-purple-700 w-40  justify-center p-3 text-white font-bold rounded-lg cursor-pointer transition-all mt-5 ml-20 mr-20"
+          value="Añadir a la lista"
         />
       </form>
     </main>
