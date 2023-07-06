@@ -1,17 +1,19 @@
 import React, { MouseEvent, useEffect, useState } from "react";
 import { Tasks } from "../home/home";
+import { constants } from "buffer";
 
 interface TaskProps {
   task: Tasks;
   editTask: (id: string, title: string) => void;
   deleteTask: (id: string) => void;
+  toggleTask: (id: string) => void;
 }
 
-function TaskCard({ task, editTask, deleteTask }: TaskProps) {
+function TaskCard({ task, editTask, deleteTask, toggleTask }: TaskProps) {
   const [editedTitle, setEditedTitle] = useState<string>(task.title);
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
-  const handleOnClickEdit: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleOnClickEdit = () => {
     setIsEdit(true);
   };
 
@@ -34,8 +36,41 @@ function TaskCard({ task, editTask, deleteTask }: TaskProps) {
         {isEdit ? "Editar tarea" : ""}
       </h1>
 
-      {isEdit ? (
-        <div>
+      {!isEdit ? (
+        <>
+          <p className="font-bold mb-3 text-gray-700 uppercase">
+            Tarea: <span className="font-normal normal-case">{task.title}</span>
+          </p>
+          <div className="flex justify-between gap-2">
+            <button
+              type="button"
+              className="py-2 px-10 bg-purple-400 hover:bg-purple-700 text-white font-bold uppercase rounded-lg"
+              onClick={handleOnClickEdit}
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              className="py-2 px-10 w-30 bg-red-400 hover:bg-red-500 text-white font-bold uppercase rounded-lg"
+              onClick={handleOnClickDelete}
+            >
+              Eliminar
+            </button>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={task.isComplete}
+                onChange={() => toggleTask(task.id)}
+              />
+              <span className="text-sm">
+                {task.isComplete ? "completada" : "Pendiente"}
+              </span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
           <input
             id="titulo"
             type="text"
@@ -44,10 +79,10 @@ function TaskCard({ task, editTask, deleteTask }: TaskProps) {
             value={editedTitle}
             onChange={(e) => setEditedTitle(e.target.value)}
           />
-          <div className=" flex justify-between gap-2">
+          <div className="flex justify-between gap-2">
             <button
               type="button"
-              className="py-2 px-10 bg-purple-500 hover:bg-purple-700 text-white font-bold uppercase rounded-lg "
+              className="py-2 px-10 bg-purple-400 hover:bg-purple-700 text-white font-bold uppercase rounded-lg"
               onClick={handleOnClickSave}
             >
               Guardar
@@ -60,30 +95,7 @@ function TaskCard({ task, editTask, deleteTask }: TaskProps) {
               Cancelar
             </button>
           </div>
-        </div>
-      ) : (
-        <div>
-          <p className="font-bold mb-3 text-gray-700 uppercase ">
-            Titulo:{" "}
-            <span className="font-normal normal-case ">{task.title}</span>
-          </p>
-          <div className=" flex justify-between gap-2">
-            <button
-              type="button"
-              className="py-2 px-10 bg-purple-500 hover:bg-purple-700 text-white font-bold uppercase rounded-lg "
-              onClick={handleOnClickEdit}
-            >
-              Editar
-            </button>
-            <button
-              type="button"
-              className="py-2 px-10 bg-red-500 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
-              onClick={handleOnClickDelete}
-            >
-              Eliminar
-            </button>
-          </div>
-        </div>
+        </>
       )}
     </div>
   );

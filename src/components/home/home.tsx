@@ -39,17 +39,45 @@ const Home = () => {
     setTasks(newTasks);
   };
 
+  const toggleTask = (id: string) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          isComplete: !task.isComplete,
+        };
+      } else {
+        return task;
+      }
+    });
+    console.log(newTasks);
+    setTasks(newTasks);
+  };
+
   const deleteTask = (id: string) => {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center  ">
+    <main className="flex min-h-screen flex-col items-center bg-purple-200 ">
       <Header />
-      <div className="mt-12 md:flex gap-4">
-        <AddTasks addNewTask={addNewTask} />
-        <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} />
+      <AddTasks addNewTask={addNewTask} />
+      <div className="mt-12 md:flex gap-14 ">
+        <TaskList
+          tasks={tasks.filter((t: Tasks) => !t.isComplete)}
+          editTask={editTask}
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+          title="Listado de Tareas"
+        />
+        <TaskList
+          tasks={tasks.filter((t: Tasks) => t.isComplete)}
+          editTask={editTask}
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+          title="Tareas completadas"
+        />
       </div>
     </main>
   );
