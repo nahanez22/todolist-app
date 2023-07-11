@@ -4,6 +4,7 @@ import AddTasks from "../tasks/addTasks";
 import Header from "../tasks/header";
 import TaskList from "../tasks/taskList";
 import { useLocalStorage } from "../hooks/LocalStorage";
+import { useEffect } from "react";
 
 export interface Tasks {
   title: string;

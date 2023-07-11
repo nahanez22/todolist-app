@@ -37,7 +37,7 @@ function TaskCard({ task, editTask, deleteTask, toggleTask }: TaskProps) {
       </h1>
 
       {!isEdit ? (
-        <>
+        <main>
           <p className="font-bold mb-3 text-gray-700 uppercase">
             Tarea: <span className="font-normal normal-case">{task.title}</span>
           </p>
@@ -68,9 +68,9 @@ function TaskCard({ task, editTask, deleteTask, toggleTask }: TaskProps) {
               </span>
             </div>
           </div>
-        </>
+        </main>
       ) : (
-        <>
+        <main>
           <input
             id="titulo"
             type="text"
@@ -95,7 +95,7 @@ function TaskCard({ task, editTask, deleteTask, toggleTask }: TaskProps) {
               Cancelar
             </button>
           </div>
-        </>
+        </main>
       )}
     </div>
   );
