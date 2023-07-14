@@ -18,7 +18,7 @@ function TaskList({
   title,
 }: TasksListProps) {
   return (
-    <main className="md:w-1/2 lg:w-3/5 md:h-screen">
+    <main className="h-full">
       <h2 className="text-lg font-bold mt-4 text-center mb-8 text-gray-500 ">
         {title}
       </h2>

@@ -31,14 +31,14 @@ function TaskCard({ task, editTask, deleteTask, toggleTask }: TaskProps) {
   }
 
   return (
-    <div className="m-3 bg-white shadow-md px-5 py-10 rounded-xl">
-      <h1 className="font-bold mb-3 text-gray-700 uppercase text-center">
+    <div className=" bg-red-500 shadow-md px-10 py-10 h-auto w-96  rounded-xl mb-5 ">
+      <h1 className="font-bold mb-2 -mt-8 text-gray-700 uppercase text-center">
         {isEdit ? "Editar tarea" : ""}
       </h1>
 
       {!isEdit ? (
-        <main>
-          <p className="font-bold mb-3 text-gray-700 uppercase">
+        <main className="h-10 ">
+          <p className="font-bold -mt-6 mb text-gray-700 uppercase">
             Tarea: <span className="font-normal normal-case">{task.title}</span>
           </p>
           <div className="flex justify-between gap-2">
@@ -63,23 +63,23 @@ function TaskCard({ task, editTask, deleteTask, toggleTask }: TaskProps) {
                 checked={task.isComplete}
                 onChange={() => toggleTask(task.id)}
               />
-              <span className="text-sm">
+              <span className="text-sm ">
                 {task.isComplete ? "completada" : "Pendiente"}
               </span>
             </div>
           </div>
         </main>
       ) : (
-        <main>
+        <main className="h-10">
           <input
             id="titulo"
             type="text"
             placeholder="Edite la tarea"
-            className="border-2 w-full p-2 mt-2 mb-6 placeholder-gray-400 rounded-md"
+            className="border-2 w-full  placeholder-gray-400 rounded-md"
             value={editedTitle}
             onChange={(e) => setEditedTitle(e.target.value)}
           />
-          <div className="flex justify-between gap-2">
+          <div className="flex justify-between mt-2 gap-2">
             <button
               type="button"
               className="py-2 px-10 bg-purple-400 hover:bg-purple-700 text-white font-bold uppercase rounded-lg"

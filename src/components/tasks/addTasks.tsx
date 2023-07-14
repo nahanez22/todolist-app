@@ -34,10 +34,10 @@ function AddTasks({ addNewTask }: AddTasksProps) {
   };
 
   return (
-    <main className="mt-10 w-96  ">
+    <main className="mt-10 w-96 lg:w-1/2 ">
       {/*  <p className="text-lg mt-4 text-center mb-8 font-bold">Añade tarea</p> */}
       <form
-        className="bg-white shadow-md rounded-lg py-10 px-5  h-44"
+        className="bg-white shadow-md rounded-lg  px-5 py-5 h-36 "
         onSubmit={handleSubmit}
       >
         <div>
@@ -59,7 +59,7 @@ function AddTasks({ addNewTask }: AddTasksProps) {
 
         <input
           type="submit"
-          className=" bg-purple-400 hover:bg-purple-700 w-40  justify-center p-3 text-white font-bold rounded-lg cursor-pointer transition-all mt-5 ml-20 mr-20"
+          className=" bg-purple-400 hover:bg-purple-700 w-40 h-10   text-white font-bold rounded-lg cursor-pointer transition-all mt-3 lg:ml-96 ml-24"
           value="Añadir a la lista"
         />
       </form>

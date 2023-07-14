@@ -51,7 +51,7 @@ const Home = () => {
         return task;
       }
     });
-    console.log(newTasks);
+
     setTasks(newTasks);
   };
 
@@ -61,16 +61,16 @@ const Home = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-purple-200 ">
+    <main className="flex w-auto lg:h-screen flex-col items-center bg-purple-200 ">
       <Header />
       <AddTasks addNewTask={addNewTask} />
-      <div className="mt-12 md:flex gap-14 ">
+      <div className="mt-12 md:flex gap-96 ">
         <TaskList
           tasks={tasks.filter((t: Tasks) => !t.isComplete)}
           editTask={editTask}
           deleteTask={deleteTask}
           toggleTask={toggleTask}
-          title="Listado de Tareas"
+          title="Tareas pendientes"
         />
         <TaskList
           tasks={tasks.filter((t: Tasks) => t.isComplete)}
